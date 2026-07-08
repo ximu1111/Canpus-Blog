@@ -1,0 +1,124 @@
+<!-- pages/profile/profile.wxml - 个人中心 -->
+<view class="page-container">
+  <!-- 用户信息头部 -->
+  <view class="profile-header">
+    <view class="header-bg"></view>
+    <view class="user-section">
+      <block wx:if="{{isLoggedIn}}">
+        <image
+          class="avatar avatar-lg"
+          src="{{userInfo.avatarUrl}}"
+          mode="aspectFill"
+        />
+        <view class="user-detail">
+          <text class="user-name">{{userInfo.nickName}}</text>
+          <text class="user-bio text-secondary">{{userInfo.bio}}</text>
+          <view class="user-tags flex-row">
+            <view class="tag tag-primary">{{userInfo.school}}</view>
+            <view class="tag tag-accent">{{userInfo.major}}</view>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="login-prompt flex-center" bind:tap="onLogin">
+          <view class="avatar avatar-lg flex-center" style="background-color: var(--color-primary-light);">
+            <text style="font-size: 48rpx;">👤</text>
+          </view>
+          <view class="login-text-wrap">
+            <text class="login-text">点击登录</text>
+            <text class="login-sub text-secondary">登录后享受更多功能</text>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <!-- 数据统计 -->
+    <view wx:if="{{isLoggedIn}}" class="stats-row flex-between">
+      <view class="stat-block" bind:tap="onStatTap" data-type="blog">
+        <text class="stat-num">{{userInfo.blogCount}}</text>
+        <text class="stat-label">博客</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-block" bind:tap="onStatTap" data-type="follow">
+        <text class="stat-num">{{userInfo.followCount}}</text>
+        <text class="stat-label">关注</text>
+      </view>
+      <view class="stat-divider"></view>
+      <view class="stat-block" bind:tap="onStatTap" data-type="fans">
+        <text class="stat-num">{{userInfo.fansCount}}</text>
+        <text class="stat-label">粉丝</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 我的博客 -->
+  <view class="section card">
+    <view class="section-header flex-between">
+      <text class="section-title">我的博客</text>
+      <text class="section-more text-secondary" bind:tap="onMyBlogs">查看全部 ›</text>
+    </view>
+    <view wx:if="{{myBlogs.length > 0}}" class="my-blog-list">
+      <view
+        wx:for="{{myBlogs}}"
+        wx:key="id"
+        class="my-blog-item"
+        bind:tap="onBlogTap"
+        data-id="{{item.id}}"
+      >
+        <text class="my-blog-title text-ellipsis">{{item.title}}</text>
+        <view class="my-blog-meta flex-row">
+          <text class="text-secondary">{{item.timeFormatted}}</text>
+          <text class="text-secondary">· {{item.likeCount}} 赞 · {{item.commentCount}} 评论</text>
+        </view>
+      </view>
+    </view>
+    <view wx:else class="empty-hint flex-center">
+      <text class="text-secondary" style="font-size: 26rpx;">还没有发布博客哦~</text>
+    </view>
+  </view>
+
+  <!-- 功能菜单 -->
+  <view class="section card menu-section">
+    <view class="menu-item flex-between" bind:tap="onMenuTap" data-type="collect">
+      <view class="menu-left flex-row">
+        <text class="menu-icon">⭐</text>
+        <text class="menu-name">我的收藏</text>
+      </view>
+      <text class="menu-arrow text-secondary">›</text>
+    </view>
+    <view class="menu-item flex-between" bind:tap="onMenuTap" data-type="history">
+      <view class="menu-left flex-row">
+        <text class="menu-icon">🕐</text>
+        <text class="menu-name">浏览历史</text>
+      </view>
+      <text class="menu-arrow text-secondary">›</text>
+    </view>
+    <view class="menu-item flex-between" bind:tap="onMenuTap" data-type="draft">
+      <view class="menu-left flex-row">
+        <text class="menu-icon">📝</text>
+        <text class="menu-name">草稿箱</text>
+      </view>
+      <van-tag wx:if="{{draftCount > 0}}" type="primary" size="medium">{{draftCount}}</van-tag>
+      <text class="menu-arrow text-secondary">›</text>
+    </view>
+    <view class="menu-item flex-between" bind:tap="onMenuTap" data-type="setting">
+      <view class="menu-left flex-row">
+        <text class="menu-icon">⚙️</text>
+        <text class="menu-name">设置</text>
+      </view>
+      <text class="menu-arrow text-secondary">›</text>
+    </view>
+    <view class="menu-item flex-between" bind:tap="onMenuTap" data-type="about">
+      <view class="menu-left flex-row">
+        <text class="menu-icon">ℹ️</text>
+        <text class="menu-name">关于</text>
+      </view>
+      <text class="menu-arrow text-secondary">›</text>
+    </view>
+  </view>
+
+  <!-- 退出登录 -->
+  <view wx:if="{{isLoggedIn}}" class="logout-section">
+    <button class="logout-btn" bind:tap="onLogout">退出登录</button>
+  </view>
+</view>

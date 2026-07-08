@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "校园博客",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "blog-card": "/components/blog-card/blog-card",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-loading": "@vant/weapp/loading/index",
+    "van-empty": "@vant/weapp/empty/index",
+    "van-search": "@vant/weapp/search/index",
+    "van-icon": "@vant/weapp/icon/index"
+  }
+}

@@ -1,0 +1,125 @@
+/* components/comment-item/comment-item.wxss */
+
+.comment-item {
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid var(--color-border);
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+.comment-main {
+  display: flex;
+  gap: 16rpx;
+}
+
+.comment-content-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.comment-header {
+  margin-bottom: 8rpx;
+}
+
+.comment-user {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.comment-time {
+  font-size: 22rpx;
+}
+
+.comment-text {
+  font-size: 28rpx;
+  color: var(--color-text);
+  line-height: 1.6;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+/* 回复列表 */
+.reply-list {
+  background-color: #F8F9FB;
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+  margin-bottom: 12rpx;
+}
+
+.reply-item {
+  padding: 12rpx 0;
+  border-bottom: 1rpx solid var(--color-border);
+  font-size: 26rpx;
+  line-height: 1.6;
+}
+
+.reply-item:last-child {
+  border-bottom: none;
+}
+
+.reply-user {
+  color: var(--color-primary);
+  font-weight: 500;
+  font-size: 24rpx;
+}
+
+.reply-to {
+  color: var(--color-text-secondary);
+  font-size: 24rpx;
+}
+
+.reply-to-user {
+  color: var(--color-primary);
+  font-weight: 500;
+  font-size: 24rpx;
+}
+
+.reply-text {
+  color: var(--color-text);
+  font-size: 26rpx;
+}
+
+.reply-meta {
+  margin-top: 8rpx;
+}
+
+.reply-time {
+  font-size: 22rpx;
+}
+
+.reply-actions {
+  gap: 16rpx;
+}
+
+.reply-action {
+  padding: 4rpx 12rpx;
+}
+
+/* 操作区 */
+.comment-actions {
+  margin-top: 8rpx;
+}
+
+.reply-btn {
+  padding: 4rpx 16rpx;
+}
+
+.action-right {
+  gap: 8rpx;
+}
+
+.like-icon {
+  font-size: 24rpx;
+  transition: transform 0.2s ease;
+}
+
+.like-icon.liked {
+  animation: likeScale 0.3s ease-in-out;
+}
+
+.like-count {
+  font-size: 22rpx;
+}

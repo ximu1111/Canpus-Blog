@@ -1,0 +1,70 @@
+<!-- pages/index/index.wxml - 首页 -->
+<view class="page-container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <van-search
+      value="{{searchValue}}"
+      shape="round"
+      placeholder="搜索博客、用户..."
+      bind:change="onSearchChange"
+      bind:search="onSearch"
+      bind:clear="onSearchClear"
+    />
+  </view>
+
+  <!-- 分类标签 -->
+  <view class="category-tabs">
+    <scroll-view scroll-x class="tabs-scroll" enhanced show-scrollbar="{{false}}">
+      <view class="tabs-inner">
+        <view
+          wx:for="{{categories}}"
+          wx:key="id"
+          class="tab-item {{activeCategory === item.id ? 'active' : ''}}"
+          bind:tap="onCategoryTap"
+          data-id="{{item.id}}"
+        >
+          <text class="tab-icon">{{item.icon}}</text>
+          <text class="tab-name">{{item.name}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 博客列表 -->
+  <view class="blog-list">
+    <block wx:if="{{blogList.length > 0}}">
+      <blog-card
+        wx:for="{{blogList}}"
+        wx:key="id"
+        blog="{{item}}"
+        bind:like="onBlogLike"
+      />
+    </block>
+
+    <!-- 加载状态 -->
+    <view wx:if="{{loading}}" class="loading-wrap flex-center">
+      <van-loading size="24px" type="spinner" color="#4F86C6">加载中...</van-loading>
+    </view>
+
+    <!-- 没有更多 -->
+    <view wx:if="{{!hasMore && blogList.length > 0}}" class="no-more flex-center">
+      <text class="no-more-text">— 已经到底啦 —</text>
+    </view>
+
+    <!-- 空状态 -->
+    <van-empty
+      wx:if="{{!loading && blogList.length === 0}}"
+      description="还没有内容哦~"
+      image="search"
+    />
+  </view>
+
+  <!-- 返回顶部按钮 -->
+  <view
+    wx:if="{{showBackTop}}"
+    class="back-top flex-center"
+    bind:tap="onBackTop"
+  >
+    <van-icon name="arrow-up" size="20px" color="#4F86C6" />
+  </view>
+</view>

@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="校园博客 - 面向学生的校园内容社区微信小程序" />
+    <title>校园博客 - 微信小程序项目</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
+        background: #F5F7FA;
+        color: #2C3E50;
+        line-height: 1.6;
+      }
+      .hero {
+        background: linear-gradient(135deg, #4F86C6 0%, #3A6BA5 100%);
+        color: #fff;
+        padding: 60px 24px 80px;
+        text-align: center;
+      }
+      .hero h1 { font-size: 2.4rem; font-weight: 700; margin-bottom: 12px; }
+      .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+      .hero .badge {
+        display: inline-block;
+        background: rgba(255,255,255,0.2);
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        margin-top: 16px;
+      }
+      .container { max-width: 960px; margin: -40px auto 0; padding: 0 24px 60px; position: relative; z-index: 1; }
+      .card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        padding: 32px;
+        margin-bottom: 24px;
+      }
+      .card h2 {
+        font-size: 1.4rem;
+        color: #2C3E50;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .card h2 .icon { font-size: 1.6rem; }
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+      }
+      .feature-item {
+        padding: 20px;
+        border-radius: 12px;
+        background: #F8F9FB;
+        border-left: 4px solid #4F86C6;
+      }
+      .feature-item h3 { font-size: 1.05rem; margin-bottom: 8px; color: #2C3E50; }
+      .feature-item p { font-size: 0.9rem; color: #8E99A4; line-height: 1.5; }
+      .page-list { list-style: none; }
+      .page-list li {
+        padding: 16px 0;
+        border-bottom: 1px solid #EBEEF2;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .page-list li:last-child { border-bottom: none; }
+      .page-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        background: #E8F0FE;
+        flex-shrink: 0;
+      }
+      .page-info h4 { font-size: 1rem; color: #2C3E50; margin-bottom: 4px; }
+      .page-info p { font-size: 0.85rem; color: #8E99A4; }
+      .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+      .tech-tag {
+        padding: 8px 18px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+      .tech-tag.blue { background: #E8F0FE; color: #4F86C6; }
+      .tech-tag.orange { background: #FFF3EB; color: #FF8C42; }
+      .tech-tag.green { background: #E8F8EF; color: #27AE60; }
+      .tech-tag.purple { background: #F3E8FF; color: #9B59B6; }
+      .guide-steps { counter-reset: step; }
+      .guide-step {
+        padding: 16px 0 16px 52px;
+        position: relative;
+        border-left: 2px solid #EBEEF2;
+        margin-left: 20px;
+      }
+      .guide-step::before {
+        counter-increment: step;
+        content: counter(step);
+        position: absolute;
+        left: -15px;
+        top: 14px;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #4F86C6;
+        color: #fff;
+        font-size: 0.8rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .guide-step h4 { font-size: 1rem; color: #2C3E50; margin-bottom: 4px; }
+      .guide-step p { font-size: 0.85rem; color: #8E99A4; }
+      .guide-step code {
+        background: #F5F7FA;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        color: #4F86C6;
+      }
+      .structure-tree {
+        font-family: 'SF Mono', 'Fira Code', monospace;
+        font-size: 0.85rem;
+        line-height: 1.8;
+        color: #5D6D7E;
+        background: #F8F9FB;
+        padding: 20px 24px;
+        border-radius: 12px;
+        overflow-x: auto;
+        white-space: pre;
+      }
+      .structure-tree .dir { color: #4F86C6; font-weight: 600; }
+      .structure-tree .file { color: #5D6D7E; }
+      .structure-tree .comment { color: #8E99A4; font-style: italic; }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <h1>校园博客</h1>
+      <p>面向大学生的校园内容社区微信小程序，实现图文发布、互动社交、消息推送全流程功能</p>
+      <div class="badge">微信小程序 + Vant Weapp</div>
+    </div>
+
+    <div class="container">
+      <!-- 核心功能 -->
+      <div class="card">
+        <h2><span class="icon">✨</span> 核心功能</h2>
+        <div class="feature-grid">
+          <div class="feature-item">
+            <h3>瀑布流首页</h3>
+            <p>博客内容以瀑布流形式展示，支持下拉刷新、上拉分页加载、分类筛选，点赞动画交互</p>
+          </div>
+          <div class="feature-item">
+            <h3>图文发布</h3>
+            <p>多图上传（最多9张）、图片压缩预览、富文本编辑工具栏、发布前预览功能</p>
+          </div>
+          <div class="feature-item">
+            <h3>互动社交</h3>
+            <p>点赞、评论、回复、用户关注全套交互逻辑，实时同步互动数据</p>
+          </div>
+          <div class="feature-item">
+            <h3>消息推送</h3>
+            <p>点赞/评论/关注/系统通知分类展示，未读标记，点击已读状态切换</p>
+          </div>
+          <div class="feature-item">
+            <h3>个人中心</h3>
+            <p>用户信息展示、数据统计、博客管理、收藏/历史/草稿箱等功能入口</p>
+          </div>
+          <div class="feature-item">
+            <h3>Vant Weapp 组件</h3>
+            <p>按需引入 Vant 组件库，统一全局主题配色，实现全站视觉风格标准化</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 页面结构 -->
+      <div class="card">
+        <h2><span class="icon">📱</span> 页面结构</h2>
+        <ul class="page-list">
+          <li>
+            <div class="page-icon">🏠</div>
+            <div class="page-info">
+              <h4>首页 - pages/index</h4>
+              <p>分类标签横向滚动 + 瀑布流博客列表 + 下拉刷新/上拉加载 + 搜索</p>
+            </div>
+          </li>
+          <li>
+            <div class="page-icon">📖</div>
+            <div class="page-info">
+              <h4>博客详情 - pages/detail</h4>
+              <p>图文内容展示 + 作者关注 + 评论区（评论/回复/点赞）+ 底部操作栏</p>
+            </div>
+          </li>
+          <li>
+            <div class="page-icon">✏️</div>
+            <div class="page-info">
+              <h4>发布页 - pages/publish</h4>
+              <p>标题输入 + 分类选择 + 内容编辑（工具栏）+ 多图上传压缩 + 预览</p>
+            </div>
+          </li>
+          <li>
+            <div class="page-icon">💬</div>
+            <div class="page-info">
+              <h4>消息页 - pages/message</h4>
+              <p>消息分类标签（全部/点赞/评论/关注/系统）+ 未读标记 + 消息列表</p>
+            </div>
+          </li>
+          <li>
+            <div class="page-icon">👤</div>
+            <div class="page-info">
+              <h4>个人中心 - pages/profile</h4>
+              <p>用户信息头部 + 数据统计 + 我的博客 + 功能菜单 + 退出登录</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- 技术栈 -->
+      <div class="card">
+        <h2><span class="icon">🛠</span> 技术栈</h2>
+        <div class="tech-tags">
+          <span class="tech-tag blue">微信小程序</span>
+          <span class="tech-tag orange">Vant Weapp</span>
+          <span class="tech-tag green">WXML + WXSS</span>
+          <span class="tech-tag purple">JavaScript</span>
+          <span class="tech-tag blue">CSS Variables</span>
+          <span class="tech-tag orange">Component 组件化</span>
+          <span class="tech-tag green">Mock 数据层</span>
+          <span class="tech-tag purple">Pull-to-Refresh</span>
+        </div>
+      </div>
+
+      <!-- 项目结构 -->
+      <div class="card">
+        <h2><span class="icon">📂</span> 项目结构</h2>
+        <div class="structure-tree"><span class="dir">miniprogram/</span>
+├── <span class="file">app.js</span>              <span class="comment"># 小程序入口，全局数据与登录</span>
+├── <span class="file">app.json</span>           <span class="comment"># 全局配置（页面路由、TabBar）</span>
+├── <span class="file">app.wxss</span>           <span class="comment"># 全局样式（CSS变量、工具类）</span>
+├── <span class="file">package.json</span>       <span class="comment"># Vant Weapp 依赖</span>
+├── <span class="file">project.config.json</span><span class="comment"># 项目配置</span>
+├── <span class="dir">pages/</span>
+│   ├── <span class="dir">index/</span>          <span class="comment"># 首页（瀑布流列表）</span>
+│   ├── <span class="dir">detail/</span>         <span class="comment"># 博客详情（评论互动）</span>
+│   ├── <span class="dir">publish/</span>        <span class="comment"># 发布页（图文编辑）</span>
+│   ├── <span class="dir">message/</span>        <span class="comment"># 消息页（通知中心）</span>
+│   └── <span class="dir">profile/</span>        <span class="comment"># 个人中心</span>
+├── <span class="dir">components/</span>
+│   ├── <span class="dir">blog-card/</span>      <span class="comment"># 博客卡片组件</span>
+│   └── <span class="dir">comment-item/</span>   <span class="comment"># 评论项组件</span>
+├── <span class="dir">utils/</span>
+│   ├── <span class="file">util.js</span>         <span class="comment"># 工具函数</span>
+│   └── <span class="file">mock-data.js</span>    <span class="comment"># 模拟数据层</span>
+└── <span class="dir">images/</span>             <span class="comment"># 图标与占位图</span></div>
+      </div>
+
+      <!-- 使用指南 -->
+      <div class="card">
+        <h2><span class="icon">🚀</span> 使用指南</h2>
+        <div class="guide-steps">
+          <div class="guide-step">
+            <h4>安装微信开发者工具</h4>
+            <p>前往 <code>developers.weixin.qq.com</code> 下载并安装最新版微信开发者工具</p>
+          </div>
+          <div class="guide-step">
+            <h4>导入项目</h4>
+            <p>打开开发者工具，选择"导入项目"，目录选择 <code>miniprogram/</code> 文件夹</p>
+          </div>
+          <div class="guide-step">
+            <h4>安装依赖</h4>
+            <p>在 <code>miniprogram/</code> 目录下执行 <code>npm install</code>，然后在开发者工具中点击"工具 → 构建 npm"</p>
+          </div>
+          <div class="guide-step">
+            <h4>配置 AppID</h4>
+            <p>在 <code>project.config.json</code> 中替换 <code>appid</code> 为你自己的小程序 AppID（或使用测试号）</p>
+          </div>
+          <div class="guide-step">
+            <h4>预览调试</h4>
+            <p>点击开发者工具的"编译"按钮即可预览，支持真机调试和模拟器预览</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

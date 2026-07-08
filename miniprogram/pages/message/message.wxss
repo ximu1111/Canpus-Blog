@@ -1,0 +1,145 @@
+/* pages/message/message.wxss */
+
+.message-tabs {
+  display: flex;
+  background-color: var(--color-card);
+  padding: 0 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tab-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  padding: 28rpx 0;
+  position: relative;
+  font-size: 28rpx;
+  color: var(--color-text-secondary);
+  transition: all 0.2s ease;
+}
+
+.tab-item.active {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48rpx;
+  height: 4rpx;
+  background-color: var(--color-primary);
+  border-radius: 2rpx;
+}
+
+.tab-badge {
+  background-color: var(--color-danger);
+  border-radius: 20rpx;
+  padding: 2rpx 10rpx;
+  min-width: 32rpx;
+  text-align: center;
+}
+
+.badge-text {
+  color: #FFFFFF;
+  font-size: 20rpx;
+  line-height: 1.4;
+}
+
+/* 消息列表 */
+.message-list {
+  padding: 12rpx 0;
+}
+
+.message-item {
+  display: flex;
+  padding: 24rpx;
+  background-color: var(--color-card);
+  margin: 8rpx 24rpx;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  gap: 16rpx;
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.message-item.unread {
+  background-color: var(--color-primary-light);
+}
+
+.message-left {
+  flex-shrink: 0;
+}
+
+.system-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background-color: var(--color-primary-light);
+}
+
+.system-icon-text {
+  font-size: 36rpx;
+}
+
+.message-content {
+  min-width: 0;
+}
+
+.message-header {
+  margin-bottom: 8rpx;
+}
+
+.message-from {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.message-time {
+  font-size: 22rpx;
+  flex-shrink: 0;
+}
+
+.message-text {
+  font-size: 26rpx;
+  color: var(--color-text);
+  line-height: 1.5;
+  display: block;
+  margin-bottom: 4rpx;
+}
+
+.message-text.unread-text {
+  font-weight: 500;
+}
+
+.message-ref {
+  font-size: 24rpx;
+  display: block;
+  margin-top: 8rpx;
+  padding: 8rpx 16rpx;
+  background-color: var(--color-bg);
+  border-radius: 8rpx;
+}
+
+.unread-dot {
+  position: absolute;
+  top: 28rpx;
+  right: 24rpx;
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background-color: var(--color-danger);
+}
+
+.loading-wrap {
+  padding: 60rpx 0;
+}

@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "消息",
+  "usingComponents": {
+    "van-badge": "/miniprogram_npm/@vant/weapp/badge/index",
+    "van-tab": "/miniprogram_npm/@vant/weapp/tab/index",
+    "van-tabs": "/miniprogram_npm/@vant/weapp/tabs/index",
+    "van-empty": "/miniprogram_npm/@vant/weapp/empty/index",
+    "van-loading": "/miniprogram_npm/@vant/weapp/loading/index",
+    "van-swipe-cell": "/miniprogram_npm/@vant/weapp/swipe-cell/index"
+  }
+}

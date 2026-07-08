@@ -1,0 +1,80 @@
+<!-- components/blog-card/blog-card.wxml -->
+<view class="blog-card" bind:tap="onCardTap" hover-class="card-hover">
+  <!-- 用户信息区 -->
+  <view class="card-header flex-row">
+    <image
+      class="avatar avatar-sm"
+      src="{{blog.user.avatarUrl}}"
+      mode="aspectFill"
+    />
+    <view class="user-info flex-1" style="margin-left: 16rpx;">
+      <text class="user-name">{{blog.user.nickName}}</text>
+      <text class="user-school text-secondary">{{blog.user.school}}</text>
+    </view>
+    <view class="tag tag-primary">{{blog.categoryName}}</view>
+  </view>
+
+  <!-- 内容区 -->
+  <view class="card-body">
+    <text class="blog-title">{{blog.title}}</text>
+    <text class="blog-content text-ellipsis-2">{{blog.content}}</text>
+
+    <!-- 图片区域 -->
+    <view wx:if="{{blog.images.length > 0}}" class="image-grid image-grid-{{blog.images.length >= 3 ? 'multi' : blog.images.length}}">
+      <block wx:if="{{blog.images.length === 1}}">
+        <image
+          class="single-image"
+          src="{{blog.images[0]}}"
+          mode="aspectFill"
+          lazy-load
+        />
+      </block>
+      <block wx:elif="{{blog.images.length === 2}}">
+        <image
+          wx:for="{{blog.images}}"
+          wx:key="index"
+          class="double-image"
+          src="{{item}}"
+          mode="aspectFill"
+          lazy-load
+        />
+      </block>
+      <block wx:else>
+        <image
+          wx:for="{{blog.images}}"
+          wx:key="index"
+          wx:if="{{index < 3}}"
+          class="triple-image"
+          src="{{item}}"
+          mode="aspectFill"
+          lazy-load
+        />
+        <view wx:if="{{blog.images.length > 3}}" class="image-more">
+          <text class="more-text">+{{blog.images.length - 3}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 底部操作区 -->
+  <view class="card-footer flex-between">
+    <view class="footer-left flex-row">
+      <text class="time-text text-secondary">{{blog.timeFormatted}}</text>
+      <text class="view-text text-secondary">
+        <text class="iconfont">👁</text> {{blog.viewCountFormatted}}
+      </text>
+    </view>
+    <view class="footer-right flex-row">
+      <view class="action-item" catch:tap="onLikeTap">
+        <text class="action-icon {{blog.isLiked ? 'liked' : ''}} {{animating ? 'animate-like' : ''}}">
+          {{blog.isLiked ? '❤️' : '🤍'}}
+        </text>
+        <text class="action-count {{blog.isLiked ? 'text-accent' : 'text-secondary'}}">{{blog.likeCountFormatted}}</text>
+      </view>
+      <view class="action-item" catch:tap="onCommentTap">
+        <text class="action-icon">💬</text>
+        <text class="action-count text-secondary">{{blog.commentCount}}</text>
+      </view>
+    </view>
+  </view>
+</view>

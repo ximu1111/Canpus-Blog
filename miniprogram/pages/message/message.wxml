@@ -1,0 +1,68 @@
+<!-- pages/message/message.wxml - 消息页 -->
+<view class="page-container">
+  <!-- 消息分类 -->
+  <view class="message-tabs">
+    <view
+      wx:for="{{tabs}}"
+      wx:key="type"
+      class="tab-item {{activeTab === item.type ? 'active' : ''}}"
+      bind:tap="onTabChange"
+      data-type="{{item.type}}"
+    >
+      <text class="tab-name">{{item.name}}</text>
+      <view wx:if="{{item.unread > 0}}" class="tab-badge">
+        <text class="badge-text">{{item.unread}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 消息列表 -->
+  <view class="message-list">
+    <block wx:if="{{filteredList.length > 0}}">
+      <view
+        wx:for="{{filteredList}}"
+        wx:key="id"
+        class="message-item {{item.isRead ? '' : 'unread'}}"
+        bind:tap="onMessageTap"
+        data-index="{{index}}"
+      >
+        <view class="message-left">
+          <image
+            wx:if="{{item.fromUser}}"
+            class="avatar avatar-md"
+            src="{{item.fromUser.avatarUrl}}"
+            mode="aspectFill"
+          />
+          <view wx:else class="system-icon flex-center">
+            <text class="system-icon-text">📢</text>
+          </view>
+        </view>
+        <view class="message-content flex-1">
+          <view class="message-header flex-between">
+            <text class="message-from">
+              {{item.fromUser ? item.fromUser.nickName : '系统通知'}}
+            </text>
+            <text class="message-time text-secondary">{{item.timeFormatted}}</text>
+          </view>
+          <text class="message-text {{item.isRead ? '' : 'unread-text'}}">
+            {{item.content}}
+          </text>
+          <text wx:if="{{item.blogTitle}}" class="message-ref text-secondary">
+            原文：{{item.blogTitle}}
+          </text>
+        </view>
+        <view wx:if="{{!item.isRead}}" class="unread-dot"></view>
+      </view>
+    </block>
+
+    <van-empty
+      wx:if="{{!loading && filteredList.length === 0}}"
+      description="暂无消息"
+      image="default"
+    />
+
+    <view wx:if="{{loading}}" class="loading-wrap flex-center">
+      <van-loading size="24px" color="#4F86C6">加载中...</van-loading>
+    </view>
+  </view>
+</view>

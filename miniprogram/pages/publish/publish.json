@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "发布博客",
+  "usingComponents": {
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-picker": "@vant/weapp/picker/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-tag": "@vant/weapp/tag/index",
+    "van-dialog": "@vant/weapp/dialog/index"
+  }
+}

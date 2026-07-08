@@ -1,0 +1,151 @@
+/* components/blog-card/blog-card.wxss */
+
+.blog-card {
+  background-color: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  margin-bottom: var(--spacing-card);
+  padding: var(--spacing-inner);
+  transition: transform 0.15s ease;
+}
+
+.card-hover {
+  transform: translateY(2rpx);
+  opacity: 0.95;
+}
+
+/* 头部用户信息 */
+.card-header {
+  margin-bottom: 20rpx;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.4;
+}
+
+.user-school {
+  font-size: 22rpx;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+/* 内容区 */
+.card-body {
+  margin-bottom: 20rpx;
+}
+
+.blog-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--color-text);
+  line-height: 1.5;
+  margin-bottom: 12rpx;
+}
+
+.blog-content {
+  display: block;
+  font-size: 28rpx;
+  color: var(--color-text);
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+
+/* 图片网格 */
+.image-grid {
+  margin-top: 12rpx;
+}
+
+.image-grid.single .single-image {
+  width: 100%;
+  max-height: 400rpx;
+  border-radius: 12rpx;
+}
+
+.image-grid.double {
+  display: flex;
+  gap: 12rpx;
+}
+
+.image-grid.double .double-image {
+  flex: 1;
+  height: 240rpx;
+  border-radius: 12rpx;
+}
+
+.image-grid.multi {
+  display: flex;
+  gap: 12rpx;
+}
+
+.image-grid.multi .triple-image {
+  flex: 1;
+  height: 200rpx;
+  border-radius: 12rpx;
+}
+
+.image-more {
+  position: relative;
+  flex: 1;
+  height: 200rpx;
+  border-radius: 12rpx;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.more-text {
+  color: #FFFFFF;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+/* 底部操作区 */
+.card-footer {
+  padding-top: 16rpx;
+  border-top: 1rpx solid var(--color-border);
+}
+
+.footer-left {
+  gap: 24rpx;
+}
+
+.time-text {
+  font-size: 22rpx;
+}
+
+.view-text {
+  font-size: 22rpx;
+}
+
+.footer-right {
+  gap: 32rpx;
+}
+
+.action-item {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+}
+
+.action-icon {
+  font-size: 28rpx;
+  transition: transform 0.2s ease;
+}
+
+.action-icon.liked {
+  transform: scale(1);
+}
+
+.action-count {
+  font-size: 24rpx;
+}

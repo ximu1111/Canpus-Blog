@@ -1,0 +1,89 @@
+/* pages/index/index.wxss */
+
+.search-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-primary);
+}
+
+/* 分类标签 */
+.category-tabs {
+  background-color: var(--color-card);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+  position: sticky;
+  top: 0;
+  z-index: 99;
+}
+
+.tabs-scroll {
+  white-space: nowrap;
+}
+
+.tabs-inner {
+  display: inline-flex;
+  padding: 20rpx 24rpx;
+  gap: 16rpx;
+}
+
+.tab-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6rpx;
+  padding: 12rpx 28rpx;
+  border-radius: var(--radius-button);
+  background-color: var(--color-bg);
+  font-size: 26rpx;
+  color: var(--color-text);
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.tab-item.active {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  box-shadow: 0 2rpx 8rpx rgba(79, 134, 198, 0.3);
+}
+
+.tab-icon {
+  font-size: 28rpx;
+}
+
+.tab-name {
+  font-size: 26rpx;
+}
+
+/* 博客列表 */
+.blog-list {
+  padding: 20rpx 24rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+}
+
+/* 加载状态 */
+.loading-wrap {
+  padding: 40rpx 0;
+}
+
+/* 没有更多 */
+.no-more {
+  padding: 40rpx 0 60rpx;
+}
+
+.no-more-text {
+  font-size: 24rpx;
+  color: var(--color-text-light);
+}
+
+/* 返回顶部 */
+.back-top {
+  position: fixed;
+  right: 32rpx;
+  bottom: 200rpx;
+  width: 80rpx;
+  height: 80rpx;
+  background-color: var(--color-card);
+  border-radius: 50%;
+  box-shadow: var(--shadow-float);
+  z-index: 100;
+  transition: opacity 0.3s ease;
+}

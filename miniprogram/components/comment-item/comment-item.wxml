@@ -1,0 +1,57 @@
+<!-- components/comment-item/comment-item.wxml -->
+<view class="comment-item">
+  <!-- 主评论 -->
+  <view class="comment-main">
+    <image
+      class="avatar avatar-sm"
+      src="{{comment.user.avatarUrl}}"
+      mode="aspectFill"
+      bind:tap="onUserTap"
+      data-user-id="{{comment.user.id}}"
+    />
+    <view class="comment-content-wrap flex-1">
+      <view class="comment-header flex-between">
+        <text class="comment-user" bind:tap="onUserTap" data-user-id="{{comment.user.id}}">{{comment.user.nickName}}</text>
+        <text class="comment-time text-secondary">{{comment.timeFormatted}}</text>
+      </view>
+      <text class="comment-text">{{comment.content}}</text>
+
+      <!-- 回复列表 -->
+      <view wx:if="{{comment.replies && comment.replies.length > 0}}" class="reply-list">
+        <view
+          wx:for="{{comment.replies}}"
+          wx:key="id"
+          class="reply-item"
+        >
+          <text class="reply-user">{{item.user.nickName}}</text>
+          <text class="reply-to" wx:if="{{item.replyToUserName}}"> 回复 </text>
+          <text class="reply-to-user" wx:if="{{item.replyToUserName}}">{{item.replyToUserName}}</text>
+          <text class="reply-text">：{{item.content}}</text>
+          <view class="reply-meta flex-between">
+            <text class="reply-time text-secondary">{{item.timeFormatted}}</text>
+            <view class="reply-actions flex-row">
+              <view class="reply-action" catch:tap="onReplyTap" data-comment="{{comment}}" data-reply-user="{{item.user}}">
+                <text class="text-secondary" style="font-size: 22rpx;">回复</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 操作区 -->
+      <view class="comment-actions flex-between">
+        <view class="action-left">
+          <view class="reply-btn" catch:tap="onReplyTap" data-comment="{{comment}}" data-reply-user="{{comment.user}}">
+            <text class="text-secondary" style="font-size: 24rpx;">回复</text>
+          </view>
+        </view>
+        <view class="action-right flex-row" catch:tap="onCommentLikeTap">
+          <text class="like-icon {{comment.isLiked ? 'liked' : ''}}">
+            {{comment.isLiked ? '❤️' : '🤍'}}
+          </text>
+          <text class="like-count text-secondary">{{comment.likeCount || 0}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
